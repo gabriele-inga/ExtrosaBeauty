@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght=200;300;400;500;600;700&display=swap');
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+#nav{
+  z-index: 99999;
+}
+
+@keyframes scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+body {
+  background-color: #000000 !important;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+}
+
+.margin-top {
+  margin-top: 50vh;
+}
+
+/* Custom scrollbar matching professional polish minimal tone */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 99px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* Custom styling for standard date and time selectors */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animazione dell'anello d'oro */
+  @keyframes luxury-fill {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Stato attivo dell'anello */
+  #loading-circle.animate {
+    /* 2200ms = 2.2 Secondi esatti richiesti */
+    animation: luxury-fill 2200ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  /* Animazione dell'anello d'oro (resta invariata) */
+  @keyframes luxury-fill {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  #loading-circle.animate {
+    animation: luxury-fill 1500ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  #beauty-preloader {
+    /* Manteniamo il punto di origine perfettamente al centro per l'effetto onda */
+    transform-origin: center center;
+    
+    /* Configurazione della transizione: 1200ms per una sfumatura cinematografica */
+    /* Il cubic-bezier simula la fisica del fluido: impatto rapido, stabilizzazione lenta */
+    transition: 
+      opacity 1000ms cubic-bezier(0.1, 0.8, 0.2, 1),
+      transform 1200ms cubic-bezier(0.1, 0.8, 0.2, 1),
+      filter 1200ms cubic-bezier(0.1, 0.8, 0.2, 1);
+    
+    will-change: transform, opacity, filter;
+  }
+
+  /* Classi di trigger per lo stato finale (applicate via JS) */
+  #beauty-preloader.opacity-0 {
+    opacity: 0;
+  }
+  #beauty-preloader.scale-110 {
+    transform: scale(1.12); /* Espande lo schermo intero verso l'esterno, come un'increspatura */
+  }
+  #beauty-preloader.blur-md {
+    filter: blur(20px); /* Sfoca l'interfaccia nera mentre svela la homepage sotto */
+  }
+
+ /* ==========================================================================
+   CAROUSEL MOBILE - SOLO SCORRIMENTO SENZA ALTERAZIONI VISIVE
+   ========================================================================== */
+
+/* Nasconde la scrollbar di sistema durante lo swipe su smartphone */
+#reels-carousel-container::-webkit-scrollbar {
+  display: none !important;
+}
+#reels-carousel-container {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* Annulla i vecchi stili errati per evitare conflitti */
+.reel-card-blur, .reel-card-active {
+  filter: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Ripristino forzato e totale per Desktop */
+@media (min-width: 768px) {
+  #reels-carousel-container {
+    display: grid !important;
+    overflow: visible !important;
+  }
+  .instagram-reel-card {
+    min-width: 0 !important;
+  }
+}
+
+/* ==========================================================================
+   EFFECT CARD STACK MOBILE - RESET TOTALE SU DESKTOP
+   ========================================================================== */
+@media (max-width: 767px) {
+  #reels-stack-container {
+    perspective: 1000px;
+    touch-action: pan-y; /* Permette lo scroll verticale della pagina ma intercetta i gesti orizzontali */
+  }
+
+  .instagram-reel-card {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                opacity 0.4s ease, 
+                z-index 0s linear;
+    will-change: transform, opacity;
+    cursor: grab;
+  }
+  
+  .instagram-reel-card:active {
+    cursor: grabbing;
+  }
+
+  /* Nascondi i testi interni dei reel che si trovano "sotto" al mazzo per pulizia visiva */
+  .instagram-reel-card[data-stack-index="1"] div,
+  .instagram-reel-card[data-stack-index="2"] div,
+  .instagram-reel-card[data-stack-index="3"] div {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+  .instagram-reel-card[data-stack-index="0"] div {
+    opacity: 1 !important;
+  }
+}
+
+/* Ripristino assoluto per Desktop - Nessuna modifica visiva */
+@media (min-width: 768px) {
+  .instagram-reel-card {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    z-index: auto !important;
+  }
+}
