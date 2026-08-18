@@ -1,0 +1,21 @@
+{
+  "name": "extrosa-backend",
+  "version": "1.0.0",
+  "description": "Backend per sistema di prenotazione",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "googleapis": "^173.0.0",
+    "nodemailer": "^9.0.3",
+    "pg": "^8.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
